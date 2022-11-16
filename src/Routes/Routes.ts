@@ -2,6 +2,7 @@
 
 import { Router } from 'express';
 import TransferController from '../Controllers/TransferController';
+import KeyController from '../Controllers/KeyController';
 
 const routes = Router();
 
@@ -24,5 +25,16 @@ routes.get(
   '/transfer/:key',
   (req, res, next) => new TransferController(req, res, next).listByKey(),
 );
+
+routes.post(
+  '/key/register',
+  (req, res, next) => new KeyController(req, res, next).create(),
+);
+
+routes.get(
+  '/key/owner/:name',
+  (req, res, next) => new KeyController(req, res, next).getByOwner(),
+);
+
 
 export default routes;
